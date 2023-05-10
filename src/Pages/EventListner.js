@@ -7,10 +7,10 @@ import BNBTokenAbi from "../Services/BNBContractAbi.json"
 import ETHContractAbi from "../Services/ETHContractAbi.json"
 import { ethContractAddress } from "../Services/ContractAddress";
 const EventListner = () => {
-  const event = async () => {
-    const infuraProjectId = "cc1359e3395943b5a5e1d6e395b3aea2";
-    
-    const providerUrl = `https://mainnet.infura.io/v3/${infuraProjectId}`;
+
+  //-------------------Listen to events that will happen after it gets triggered----------------------------------//
+  const listenToOccuringEvent = async () => {
+  
     try {
         const provider = new ethers.providers.WebSocketProvider('wss://sepolia.infura.io/ws/v3/cc1359e3395943b5a5e1d6e395b3aea2');
         const signer = provider.getSigner();
@@ -34,25 +34,12 @@ const EventListner = () => {
             }
             console.log(JSON.stringify(info,null,4));
         });
-          
-            
-       
-     
-        // Contract.once("escrowExecuted", (escrowAddress, sender, receiveby, amount) => {
-        //     console.log("Event captured:", {
-        //       escrowAddress,
-        //       sender,
-        //       receiveby,
-        //       amount: amount.toString(),
-        //     });
-        //   });
 
     } catch (e) {
       console.log(e);
     }
   };
-  //data: event
-
+   //--------------------- gets all previous event till now-------------//
   const allPreviousEvents=async()=>{
     const provider = new ethers.providers.WebSocketProvider('wss://sepolia.infura.io/ws/v3/cc1359e3395943b5a5e1d6e395b3aea2');
     const signer = provider.getSigner();
